@@ -1,0 +1,90 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as splt
+import seaborn
+
+
+df=pd.read_csv(r"D:\My project\M.Sc Project\Main project\dataset.csv")
+print(df)
+
+df.shape
+
+
+df['cholesterol'].value_counts()
+
+
+seaborn.countplot(df['cholesterol'])
+
+
+df['cardio'].value_counts()
+
+
+df.isnull().values.any()
+
+
+df.isna().sum()
+
+
+
+seaborn.countplot(x='cholesterol', hue='cardio',data=df,palette='colorblind',edgecolor=seaborn.color_palette('dark',n_colors=1))
+
+
+
+
+seaborn.countplot(x='weight', hue='cardio',data=df,palette='colorblind',edgecolor=seaborn.color_palette('dark',n_colors=1))
+
+
+x=df.iloc[:,:-1]
+
+
+
+y=df.iloc[:,11]
+y
+
+
+from sklearn.model_selection import train_test_split
+
+
+
+xtrain,xtest,ytrain,ytest=train_test_split(x,y,test_size=0.3,random_state=1)
+
+
+
+xtrain
+
+
+xtest
+
+ytrain
+
+
+from sklearn.ensemble import RandomForestClassifier
+Rfc= RandomForestClassifier()
+Rfc.fit(xtrain,ytrain)
+Rfc.fit(xtrain,ytrain)
+Rfc.score(xtrain,ytrain)
+
+
+
+from sklearn.tree import DecisionTreeClassifier
+dt=DecisionTreeClassifier()
+dt.fit(xtrain,ytrain)
+dt.score(xtest,ytest)
+
+from sklearn.ensemble import RandomForestClassifier
+Rfc= RandomForestClassifier()
+Rfc.fit(xtrain,ytrain)
+Rfc.score(xtest,ytest)
+
+from sklearn.naive_bayes import GaussianNB
+nb=GaussianNB()
+nb.fit(xtrain,ytrain)
+nb.score(xtest,ytest)
+
+
+from sklearn.naive_bayes import GaussianNB
+nb=GaussianNB()
+nb.fit(xtrain,ytrain)
+nb.score(xtest,ytest)
+
+ytrain
